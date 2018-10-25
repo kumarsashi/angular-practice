@@ -21,12 +21,12 @@ export class MainnavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.applicationTitle = "Keep Note";
+    this.applicationTitle = "Keep Note !!!";
     this.username = "Stackroute";
   }
 
-  updateUserName($event){
-    this.username = $event.target.value;
+  updateUserName(abc){
+    this.username = abc.target.value;
   }
 
 }
