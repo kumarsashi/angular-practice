@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Note } from './Note';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'app-note',
@@ -6,19 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
-  public title: string;
-  public desc: string;
+ 
+  public note: Note;
+  public noteList: Note[];
 
-  constructor() { }
+  constructor(private noteService:NoteService) { 
+    this.note = new Note;
+    this.noteList=[];
+  }
 
   ngOnInit() {
+    this.noteService.getNotes().subscribe(data =>this.noteList=data, err=> console.log(err));
   }
 
   addNote() {
-    this.title = "";
-    this.desc = "";
-
-    console.log("title is :"+ this.title+ " " +this.desc);
+    
+    this.noteList.push(this.note);
+    this.noteService.addNotes(this.note).subscribe(data =>{}, err=>{});
+    console.log("title is :"+ this.note.title+ " " +this.note.desc);
+    this.note = new Note();
   }
 
 }

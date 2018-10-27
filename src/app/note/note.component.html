@@ -8,16 +8,27 @@
              </mat-expansion-panel-header>
       <div class="note-form">
       <mat-form-field>
-        <input matInput placeholder="Title">
+        <input matInput placeholder="Title" [(ngModel)]="note.title">
       </mat-form-field>
   
       <mat-form-field>
-        <input matInput placeholder="Description">
+        <input matInput placeholder="Description" [(ngModel)]="note.desc">
       </mat-form-field>
     </div>
     <button mat-button (click)="addNote()">Add Note !!!</button>
     </mat-expansion-panel>
     
   </mat-accordion>
+  </div>
+
+  <div class="note-card-container">
+    <mat-list *ngFor="let note of noteList">
+      <mat-list-item>
+        <mat-card>
+          <mat-card-title>{{note.title}}</mat-card-title>
+          <mat-card-content>{{note.desc}}</mat-card-content>
+        </mat-card>
+      </mat-list-item>
+    </mat-list>
   </div>
   
