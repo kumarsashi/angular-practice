@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from './Note';
 import { NoteService } from '../note.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-note',
@@ -11,6 +12,13 @@ export class NoteComponent implements OnInit {
  
   public note: Note;
   public noteList: Note[];
+
+  public noteForm: FormGroup = new FormGroup({
+    title: new FormControl(),
+    desc: new FormControl()
+  });
+
+
 
   constructor(private noteService:NoteService) { 
     this.note = new Note;

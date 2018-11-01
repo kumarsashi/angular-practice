@@ -7,15 +7,18 @@
         </mat-panel-title>
              </mat-expansion-panel-header>
       <div class="note-form">
+        <form class="note-form" [form-group]="noteForm" (ngSubmit)="addNote(noteForm)">
       <mat-form-field>
-        <input matInput placeholder="Title" [(ngModel)]="note.title">
+        <input matInput placeholder="Title" formControlName="title">
       </mat-form-field>
   
       <mat-form-field>
-        <input matInput placeholder="Description" [(ngModel)]="note.desc">
+        <input matInput placeholder="Description" formControlName="desc">
       </mat-form-field>
+   
+    <button mat-button >Add Note !!!</button>
+    </form>
     </div>
-    <button mat-button (click)="addNote()">Add Note !!!</button>
     </mat-expansion-panel>
     
   </mat-accordion>
