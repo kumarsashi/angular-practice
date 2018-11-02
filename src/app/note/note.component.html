@@ -7,13 +7,17 @@
         </mat-panel-title>
              </mat-expansion-panel-header>
       <div class="note-form">
-        <form class="note-form" [form-group]="noteForm" (ngSubmit)="addNote(noteForm)">
+        <form class="note-form" [formGroup]="noteForm" (ngSubmit)="addNote(noteForm)">
       <mat-form-field>
         <input matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="noteForm.get('title').hasError('required')">Title must not be empty</mat-error>
+        <mat-error *ngIf="noteForm.get('title').hasError('minlength')">Field length should be grater than 6 char</mat-error>
       </mat-form-field>
   
       <mat-form-field>
         <input matInput placeholder="Description" formControlName="desc">
+        <mat-error *ngIf="noteForm.get('desc').hasError('required')">Title must not be empty</mat-error>
+        <mat-error *ngIf="noteForm.get('desc').hasError('minlength')">Field length should be grater than 6 char</mat-error>
       </mat-form-field>
    
     <button mat-button >Add Note !!!</button>
