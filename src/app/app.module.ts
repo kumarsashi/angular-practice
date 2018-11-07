@@ -14,13 +14,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { CanActivateGuard } from './guards/can-activate.guard';
 
+const appRoutes: Routes = [
+  { path : 'login', component: LoginComponent},
+  { path : 'note', component:NoteComponent, canActivate: [CanActivateGuard] },
+  { path : '', redirectTo:'login' ,pathMatch:'full' }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     MainnavComponent,
-    NoteComponent
+    NoteComponent,
+    LoginComponent
+
   ],
   imports: [
     BrowserModule,
@@ -38,9 +48,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatCardModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

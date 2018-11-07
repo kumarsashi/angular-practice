@@ -1,0 +1,19 @@
+<div class="login-form">
+   <form class="login-form" [formGroup]="loginForm" (ngSubmit)="validateUser(loginForm)">
+    <mat-form-field>
+      <input matInput placeholder="Enter username" formControlName="username">
+      <mat-error *ngIf="loginForm.get('username').dirty && loginForm.get('username').hasError('required')">Username must be entered</mat-error>
+      <mat-error *ngIf="loginForm.get('username').dirty && loginForm.get('username').hasError('minlength')">Min length should be 6 char</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Enter password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password').dirty && loginForm.get('password').hasError('required')">Password must be entered</mat-error>
+        <mat-error *ngIf="loginForm.get('password').dirty && loginForm.get('password').hasError('minlength')">Min length should be 6 char</mat-error>
+      </mat-form-field>
+
+       
+        <button mat-button [disabled]="loginForm.invalid">Login !!!</button>
+     </form> 
+</div>
+    
