@@ -1,0 +1,32 @@
+<div class="note-container">
+  <mat-accordion>
+      <mat-expansion-panel class="note-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Keep Note !!
+          </mat-panel-title>
+               </mat-expansion-panel-header>
+        <div class="note-form">
+          <form class="note-form" [formGroup]="noteForm" (ngSubmit)="addNote(noteForm)">
+        <mat-form-field>
+          <input matInput placeholder="Title" formControlName="title">
+          <mat-error *ngIf="noteForm.get('title').hasError('required')">Title must not be empty</mat-error>
+          <mat-error *ngIf="noteForm.get('title').hasError('minlength')">Field length should be grater than 6 char</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+          <input matInput placeholder="Description" formControlName="text">
+          <mat-error *ngIf="noteForm.get('text').hasError('required')">text must not be empty</mat-error>
+          <mat-error *ngIf="noteForm.get('text').hasError('minlength')">Field length should be grater than 6 char</mat-error>
+        </mat-form-field>
+     
+      <button mat-button >Add Note !!!</button>
+      </form>
+      </div>
+      </mat-expansion-panel>
+      
+    </mat-accordion>
+    </div>
+  
+   
+    

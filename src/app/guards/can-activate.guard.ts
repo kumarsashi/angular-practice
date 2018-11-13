@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthorizationService } from '../authorization.service';
-import { RouterService } from '../router.service';
+import { AuthorizationService } from '../services/authorization.service';
+import { RouterService } from '../services/router.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class CanActivateGuard implements CanActivate {
           this.isAuthenticated = res['isAuthenticated'];
 
           if(this.isAuthenticated){
-            this.routerService.navigateToNotes();
+            this.routerService.navigateToDashboard();
           }
           else{
             this.routerService.navigateToLogin();

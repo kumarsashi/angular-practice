@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from './Note';
-import { NoteService } from '../note.service';
+import { NoteService } from '../services/note.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -40,8 +40,8 @@ export class NoteComponent implements OnInit {
     
     this.note = noteForm.value;
     this.noteList.push(this.note);
-    this.noteService.addNotes(this.note).subscribe(data =>{}, err=>{});
-    console.log("title is :"+ this.note.title+ " " +this.note.desc);
+    this.noteService.addNote(this.note).subscribe(data =>{}, err=>{});
+    console.log("title is :"+ this.note.title+ " " +this.note.text);
     this.note = new Note();
   }
 

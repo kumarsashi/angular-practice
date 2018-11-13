@@ -12,8 +12,8 @@ export class RouterService {
     this.router.navigate(['login']);
   }
 
-  navigateToNotes(){
-    console.log("Inside navigate to notes");
-    this.router.navigate(['note']);
+  navigateToDashboard(){
+    console.log("Inside navigate to dashboard");
+    this.router.navigate(['dashboard']);
   }
 }

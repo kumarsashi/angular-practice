@@ -1,0 +1,25 @@
+.note-container {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15vw;
+    padding-top: 5vh;
+}
+
+.note-expansion-panel {
+
+    margin : 0 auto;
+    width : 70vw;
+}
+
+.note-form {
+    display : flex;
+    flex-direction: column;
+}
+
+.note-card-container {
+    margin : 10vh 25vw;
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

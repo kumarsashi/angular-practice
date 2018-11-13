@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { loginUser } from './loginUser'
-import { AuthorizationService } from '../authorization.service';
-import { RouterService } from '../router.service';
+import { AuthorizationService } from '../services/authorization.service';
+import { RouterService } from '../services/router.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateLoginUser(this.loginUser).subscribe(res =>{
       console.log("token is "+ res['token']);
       this.authService.setBearerToken(res['token']);
-      this.routerService.navigateToNotes();
+      this.routerService.navigateToDashboard();
     })
     }
     this.loginForm.reset();

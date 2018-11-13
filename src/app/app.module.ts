@@ -17,10 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CanActivateGuard } from './guards/can-activate.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NoteTakerComponent } from './note-taker/note-taker.component';
+import { NotesViewComponent } from './notes-view/notes-view.component';
+import { ListViewComponent } from './list-view/list-view.component';
 
 const appRoutes: Routes = [
   { path : 'login', component: LoginComponent},
-  { path : 'note', component:NoteComponent, canActivate: [CanActivateGuard] },
+  { path : 'dashboard', component:DashboardComponent, canActivate: [CanActivateGuard] },
   { path : '', redirectTo:'login' ,pathMatch:'full' }
 ]
 
@@ -29,7 +33,11 @@ const appRoutes: Routes = [
     AppComponent,
     MainnavComponent,
     NoteComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    NoteTakerComponent,
+    NotesViewComponent,
+    ListViewComponent
 
   ],
   imports: [
