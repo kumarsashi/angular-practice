@@ -15,16 +15,19 @@ export class NoteService {
   notesSubject: BehaviorSubject<Note[]>;
 
   constructor(private authService: AuthorizationService,private httpClient: HttpClient) { 
-    this.notes= [] ;
+    this.notes=[];
     this.notesSubject= new BehaviorSubject([]);
+    this.fetchNotesFromServer();
   }
 
   fetchNotesFromServer()
   {
     this.httpClient.get<Note[]>('http://localhost:3000/api/v1/notes',
-    {headers: new HttpHeaders().set('Authorization',`${this.authService.getBearerToekn()}`) }).subscribe(notes =>{
+    {headers: new HttpHeaders().set('Authorization',`Bearer ${this.authService.getBearerToekn()}`) }
+  ).subscribe(notes =>{
       this.notes = notes;
       this.notesSubject.next(this.notes);
+
     })
  
 }
@@ -35,12 +38,17 @@ export class NoteService {
   }
 
   addNote(note: Note){
-   return this.httpClient.post<Note[]>('http://localhost:3000/api/v1/notes',
-    {headers: new HttpHeaders().set('Authorization',`${this.authService.getBearerToekn()}`) 
-  }).pipe(tap(addnote =>{
-    console.log(addnote);
-    this.notes.push(addnote);
-    this.notesSubject.next(this.notes);
-  }))
+    console.log("Inside add note method :: "+this.authService.getBearerToekn());
+   return this.httpClient.post<Note>('http://localhost:3000/api/v1/notes',note,
+    {headers: new HttpHeaders().set('Authorization',`Bearer ${this.authService.getBearerToekn()}`) }
+  ).pipe(tap(addnote =>
+    {
+      this.notes.push(addnote);
+      this.notesSubject.next(this.notes);
+    }))
+  
   }
+
+
+   
 }

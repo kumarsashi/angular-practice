@@ -16,4 +16,9 @@ export class RouterService {
     console.log("Inside navigate to dashboard");
     this.router.navigate(['dashboard']);
   }
+
+  navigateToNotesView(){
+    console.log("Inside navigate to notes view");
+    this.router.navigate(['dashboard']);
+  }
 }

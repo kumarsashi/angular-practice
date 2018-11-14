@@ -32,10 +32,13 @@ export class NoteTakerComponent implements OnInit {
   addNote(noteForm: FormGroup) {
     
     this.note = noteForm.value;
-    this.noteList.push(this.note);
+    //this.noteList.push(this.note);
     this.noteService.addNote(this.note).subscribe(data =>{}, err=>{});
     console.log("title is :"+ this.note.title+ " " +this.note.text);
-    this.note = new Note();
+    //this.note = new Note();
+
+    this.noteForm.reset();
+    this.formGroupDirective.resetForm();
   }
 
 }

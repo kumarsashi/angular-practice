@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Note } from './Note';
 import { NoteService } from '../services/note.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -10,39 +10,19 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class NoteComponent implements OnInit {
  
-  public note: Note;
-  public noteList: Note[];
+ @Input()
+ note:Note;
 
-  public noteForm: FormGroup;
-  //  = new FormGroup
-  // ({
-  //   title: new FormControl(),
-  //   desc: new FormControl()
-  // });
-
-
-
+ 
+ 
+  
   constructor(private noteService:NoteService,private formBuilder: FormBuilder) { 
-    this.note = new Note;
-    this.noteList=[];
-
-    this.noteForm = formBuilder.group({
-      title:['',Validators.compose([Validators.required,Validators.minLength(6)])],
-      desc:['',Validators.compose([Validators.required,Validators.minLength(6)])]
-    })
+    
   }
 
   ngOnInit() {
-    this.noteService.getNotes().subscribe(data =>this.noteList=data, err=> console.log(err));
-  }
-
-  addNote(noteForm: FormGroup) {
     
-    this.note = noteForm.value;
-    this.noteList.push(this.note);
-    this.noteService.addNote(this.note).subscribe(data =>{}, err=>{});
-    console.log("title is :"+ this.note.title+ " " +this.note.text);
-    this.note = new Note();
   }
 
+  
 }

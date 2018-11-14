@@ -24,7 +24,12 @@ import { ListViewComponent } from './list-view/list-view.component';
 
 const appRoutes: Routes = [
   { path : 'login', component: LoginComponent},
-  { path : 'dashboard', component:DashboardComponent, canActivate: [CanActivateGuard] },
+  { path : 'dashboard', component:DashboardComponent, canActivate: [CanActivateGuard] ,
+children : [
+  { path : 'view/notesview', component: NotesViewComponent},
+  {path : '', redirectTo:'view/notesview', pathMatch:'full'}
+]
+},
   { path : '', redirectTo:'login' ,pathMatch:'full' }
 ]
 

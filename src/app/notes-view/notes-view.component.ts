@@ -16,7 +16,7 @@ export class NotesViewComponent implements OnInit {
   constructor(private noteService: NoteService) { }
 
   ngOnInit() {
-    this.noteService.getNotes().subscribe(data =>this.noteList=data, err=> console.log(err.message));
+    this.noteService.getNotes().subscribe(data =>this.noteList=data, err=> console.log(err));
   }
 
 }
