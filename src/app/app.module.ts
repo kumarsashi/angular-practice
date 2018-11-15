@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainnavComponent } from './mainnav/mainnav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatDialog, MatDialogModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NoteComponent } from './note/note.component';
@@ -21,12 +21,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NoteTakerComponent } from './note-taker/note-taker.component';
 import { NotesViewComponent } from './notes-view/notes-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
+import { EditNoteOpenerComponent } from './edit-note-opener/edit-note-opener.component';
+import { EditNotesViewComponent } from './edit-notes-view/edit-notes-view.component';
 
 const appRoutes: Routes = [
   { path : 'login', component: LoginComponent},
   { path : 'dashboard', component:DashboardComponent, canActivate: [CanActivateGuard] ,
 children : [
   { path : 'view/notesview', component: NotesViewComponent},
+  { path : 'note/:noteid', component: EditNoteOpenerComponent,
+   outlet: 'noteEditOutlet'},
   {path : '', redirectTo:'view/notesview', pathMatch:'full'}
 ]
 },
@@ -42,7 +46,9 @@ children : [
     DashboardComponent,
     NoteTakerComponent,
     NotesViewComponent,
-    ListViewComponent
+    ListViewComponent,
+    EditNoteOpenerComponent,
+    EditNotesViewComponent
 
   ],
   imports: [
@@ -62,11 +68,15 @@ children : [
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forRoot(appRoutes)
   ],
   
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EditNotesViewComponent
+  ]
 })
 
 

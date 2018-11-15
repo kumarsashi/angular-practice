@@ -49,6 +49,14 @@ export class NoteService {
   
   }
 
+  getNoteById(noteId:number): Note{
+    console.log("id is "+ noteId);
+    let foundNote= this.notes.find(note => note.id == noteId);
+    console.log("Found note is ::"+ foundNote.id+ foundNote.text+ foundNote.title);
+    return foundNote;
+
+  }
+
 
    
 }
