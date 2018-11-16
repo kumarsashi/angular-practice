@@ -57,6 +57,18 @@ export class NoteService {
 
   }
 
+  editSaveNote(note: Note){
+    console.log("Inside add note method :: "+this.authService.getBearerToekn());
+    return this.httpClient.put<Note>(`http://localhost:3000/api/v1/notes/${note.id}`,note,
+     {headers: new HttpHeaders().set('Authorization',`Bearer ${this.authService.getBearerToekn()}`) }
+   ).pipe(tap(editNote =>
+     {
+       const note = this.notes.find(note => note.id == editNote.id);
+       Object.assign(note,editNote);
+       this.notesSubject.next(this.notes);
+     }))
+
+  }
 
    
 }
